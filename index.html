@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero Portfolio - Những Khoảnh Khắc Anh Hùng</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #0c1445 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .hero-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 20% 80%, #1e3c72 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, #2a5298 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, #0f2027 0%, transparent 50%);
+            animation: bgShift 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes bgShift {
+            0% { transform: scale(1) rotate(0deg); }
+            100% { transform: scale(1.1) rotate(2deg); }
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Orbitron', monospace;
+            font-size: 24px;
+            font-weight: 900;
+            color: #00d4ff;
+            text-shadow: 0 0 20px #00d4ff;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+            text-shadow: 0 0 10px #00d4ff;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00d4ff, #ff6b6b);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #00d4ff, #ff6b6b, #4ecdc4);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255, 107, 107, 0.5);
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #00d4ff;
+            text-shadow: 0 0 20px #00d4ff;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .avatar {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #00d4ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 120px;
+            animation: pulse 2s ease-in-out infinite;
+            box-shadow: 0 0 50px rgba(0, 212, 255, 0.5);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .about-text h3 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ff6b6b;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 100px 50px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 250px;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255, 107, 107, 0.9), rgba(78, 205, 196, 0.9));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-text {
+            text-align: center;
+            color: white;
+        }
+
+        .gallery-text h4 {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        /* Skills Section */
+        .skills {
+            padding: 100px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+        }
+
+        .skill-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .skill-card h4 {
+            font-family: 'Orbitron', monospace;
+            color: #00d4ff;
+            margin-bottom: 15px;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 50px;
+            background: rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #00d4ff;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #00d4ff;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            padding: 15px 50px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 50px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8);
+            border-top: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .avatar {
+                width: 200px;
+                height: 200px;
+                font-size: 80px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    <style>
+  #about .about-image .avatar{
+    /* Kích thước avatar, tự co theo màn hình */
+    width: clamp(80px, 18vw, 300px);
+    height: clamp(80px, 18vw, 300px);
+  }
+  #about .about-image .avatar img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;    /* cắt cho vừa khung */
+    border-radius: 50%;   /* thành hình tròn (tuỳ chọn) */
+    display: block;
+  }
+</style>
+</head>
+<body>
+    <div class="hero-bg"></div>
+    
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">Ho Dang Phuc</div>
+            <ul class="nav-links">
+                <li><a href="#home">Trang Chủ</a></li>
+                <li><a href="#about">Về Tôi</a></li>
+                <li><a href="#gallery">Khoảnh Khắc</a></li>
+                <li><a href="#skills">Kỹ Năng</a></li>
+                <li><a href="#contact">Liên Hệ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Ho Dang Phuc</h1>
+            <p>Khám phá những khoảnh khắc anh hùng và hành trình phi thường của tôi</p>
+            <a href="#about" class="cta-button">Khám Phá Ngay</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2 class="section-title">VỀ NGƯỜI ANH HÙNG</h2>
+        <div class="about-content">
+            <div class="about-image">
+                <div class="avatar"><img src="https://scontent.fsgn2-11.fna.fbcdn.net/v/t1.6435-9/66087655_2327341307536078_6317554063831465984_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=8jszygpRwrkQ7kNvwFnx7Td&_nc_oc=AdkXoF7CFnWfHSG5JxIpw8VmC9T5DstzF44BaxSsiAI0jW9tKmAuNYRn6K3C5-nUcaM&_nc_zt=23&_nc_ht=scontent.fsgn2-11.fna&_nc_gid=VTmh_YeqXVDAJ0YxBrgPPg&oh=00_AfXC60d8NBfENm3N9dThF03RRl1HmkWLtuQBvnaEHSTXlQ&oe=68D10779" alt="Avatar"></div>
+            </div>
+            <div class="about-text">
+                <h3>Câu Chuyện Của Tôi</h3>
+                <p>Như mọi siêu anh hùng, tôi bắt đầu từ những điều nhỏ bé. Với niềm đam mê bất tận và quyết tâm thép, tôi đã vượt qua mọi thử thách để trở thành phiên bản tốt nhất của chính mình.</p>
+                <p>Mỗi khoảnh khắc trong cuộc đời đều là một bài học quý giá, mỗi thử thách đều là cơ hội để tôi trở nên mạnh mẽ hơn. Hãy cùng tôi khám phá những câu chuyện đầy cảm hứng này!</p>
+                <p><strong>Sứ mệnh:</strong> Truyền cảm hứng và tạo ra những điều tích cực cho thế giới xung quanh.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <h2 class="section-title">KHOẢNH KHẮC ANH HÙNG</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                🌟
+                <div class="gallery-overlay">
+                    <div class="gallery-text">
+                        <h4>Khởi Đầu</h4>
+                        <p>Những bước đầu tiên</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-item">
+                🚀
+                <div class="gallery-overlay">
+                    <div class="gallery-text">
+                        <h4>Bứt Phá</h4>
+                        <p>Vượt qua giới hạn</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-item">
+                🏆
+                <div class="gallery-overlay">
+                    <div class="gallery-text">
+                        <h4>Thành Công</h4>
+                        <p>Gặt hái thành quả</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-item">
+                💪
+                <div class="gallery-overlay">
+                    <div class="gallery-text">
+                        <h4>Thử Thách</h4>
+                        <p>Vượt qua khó khăn</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-item">
+                🎯
+                <div class="gallery-overlay">
+                    <div class="gallery-text">
+                        <h4>Mục Tiêu</h4>
+                        <p>Hướng tới tương lai</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-item">
+                ❤️
+                <div class="gallery-overlay">
+                    <div class="gallery-text">
+                        <h4>Tình Yêu</h4>
+                        <p>Những khoảnh khắc đẹp</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <h2 class="section-title">SIÊU NĂNG LỰC</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <span class="skill-icon">⚡</span>
+                <h4>Tốc Độ Tư Duy</h4>
+                <p>Khả năng xử lý thông tin và đưa ra quyết định nhanh chóng trong mọi tình huống</p>
+            </div>
+            <div class="skill-card">
+                <span class="skill-icon">🛡️</span>
+                <h4>Bền Bỉ</h4>
+                <p>Sức mạnh tinh thần vượt trội, không bao giờ từ bỏ trước khó khăn</p>
+            </div>
+            <div class="skill-card">
+                <span class="skill-icon">🧠</span>
+                <h4>Trí Tuệ</h4>
+                <p>Khả năng học hỏi và áp dụng kiến thức một cách sáng tạo</p>
+            </div>
+            <div class="skill-card">
+                <span class="skill-icon">🤝</span>
+                <h4>Lãnh Đạo</h4>
+                <p>Truyền cảm hứng và dẫn dắt mọi người hướng tới mục tiêu chung</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2 class="section-title">LIÊN HỆ VỚI ANH HÙNG</h2>
+        <form class="contact-form">
+            <div class="form-group">
+                <label for="name">Tên của bạn</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Tin nhắn</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Gửi Tin Nhắn</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Hero Portfolio. Được tạo với ❤️ và sức mạnh siêu anh hùng.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header background change on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(0, 0, 0, 0.95)';
+            } else {
+                header.style.background = 'rgba(0, 0, 0, 0.8)';
+            }
+        });
+
+        // Gallery item click animation
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'translateY(-10px) scale(1.05)';
+                }, 150);
+            });
+        });
+
+        // Form submission
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // Simple validation
+            if (name && email && message) {
+                // Simulate form submission
+                const submitBtn = document.querySelector('.submit-btn');
+                const originalText = submitBtn.textContent;
+                
+                submitBtn.textContent = 'Đang gửi...';
+                submitBtn.style.background = 'linear-gradient(45deg, #4ecdc4, #00d4ff)';
+                
+                setTimeout(() => {
+                    submitBtn.textContent = 'Đã gửi thành công! ✓';
+                    submitBtn.style.background = 'linear-gradient(45deg, #4ecdc4, #2ecc71)';
+                    
+                    // Reset form
+                    this.reset();
+                    
+                    setTimeout(() => {
+                        submitBtn.textContent = originalText;
+                        submitBtn.style.background = 'linear-gradient(45deg, #ff6b6b, #4ecdc4)';
+                    }, 3000);
+                }, 2000);
+            } else {
+                alert('Vui lòng điền đầy đủ thông tin!');
+            }
+        });
+
+        // Add entrance animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.gallery-item, .skill-card, .about-content').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9739a1d3a51ae2fa',t:'MTc1NTk0MTg1NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
